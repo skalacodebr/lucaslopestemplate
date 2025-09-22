@@ -15,11 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@admin.test',
-            'password' => Hash::make('admin'),
+        $this->call([
+            RoleSeeder::class,
+            ProfessionalSeeder::class,
         ]);
+
+        $user = User::firstOrCreate(
+            ['email' => 'admin@admin.test'],
+            [
+                'name' => 'admin',
+                'email' => 'admin@admin.test',
+                'password' => Hash::make('admin'),
+            ]
+        );
+
+        // Assign admin role
+        if (!$user->hasRole('admin')) {
+            $user->assignRole('admin');
+        }
 
         Post::factory()
             ->count(25)

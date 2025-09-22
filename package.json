@@ -17,6 +17,7 @@
     "vite": "^6.0.11"
   },
   "dependencies": {
+    "agora-rtc-sdk-ng": "^4.24.0",
     "tippy.js": "^6.3.7"
   }
 }

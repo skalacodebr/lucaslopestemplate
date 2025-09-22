@@ -26,7 +26,7 @@ class UserResource extends Resource
     /**
      * The settings navigation group.
      */
-    protected static ?string $navigationGroup = 'Collections';
+    protected static ?string $navigationGroup = 'Usuários';
 
     /**
      * The settings navigation sort order.
@@ -72,6 +72,12 @@ class UserResource extends Resource
                     ->password()
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->maxLength(255),
+
+                Forms\Components\Select::make('roles')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->searchable(),
             ]);
     }
 
@@ -87,6 +93,15 @@ class UserResource extends Resource
 
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->badge()
+                    ->separator(',')
+                    ->searchable(),
+
+                Tables\Columns\IconColumn::make('profile.is_active')
+                    ->label('Ativo')
+                    ->boolean(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

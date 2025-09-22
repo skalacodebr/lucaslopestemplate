@@ -1,0 +1,494 @@
+/* Video Call Component Styles */
+.video-call-container {
+    min-height: 100vh;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Call Header */
+.call-header {
+    background: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.consultation-info {
+    flex: 1;
+}
+
+.consultation-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.consultation-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.detail-separator {
+    color: #d1d5db;
+}
+
+.connection-status {
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.status-connected {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-connecting {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-disconnected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.end-consultation-btn {
+    background: #dc2626;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.end-consultation-btn:hover {
+    background: #b91c1c;
+}
+
+/* Video Container */
+.video-container {
+    flex: 1;
+    position: relative;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pre-call Screen */
+.pre-call-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #1f2937;
+}
+
+.pre-call-content {
+    text-align: center;
+    color: white;
+    max-width: 500px;
+    padding: 2rem;
+}
+
+.camera-preview {
+    width: 300px;
+    height: 200px;
+    background: #374151;
+    border-radius: 12px;
+    margin: 0 auto 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #9ca3af;
+}
+
+.camera-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.pre-call-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.control-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-width: 100px;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.control-btn.active {
+    background: #059669;
+}
+
+.control-btn.inactive {
+    background: #dc2626;
+}
+
+.control-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.join-call-btn {
+    background: #059669;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.join-call-btn:hover {
+    background: #047857;
+}
+
+.waiting-message {
+    color: #fbbf24;
+    font-size: 1.125rem;
+}
+
+/* Connecting Screen */
+.connecting-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #1f2937;
+    color: white;
+}
+
+.connecting-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Active Call */
+.active-call {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remote-video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.remote-video {
+    width: 100%;
+    height: 100%;
+    background: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.participant-avatar,
+.user-avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: #6366f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.participant-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Local Video (Picture-in-Picture) */
+.local-video-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 200px;
+    height: 150px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+.local-video {
+    width: 100%;
+    height: 100%;
+    background: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.local-video .user-avatar {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+/* Participants Info */
+.participants-info {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Call Controls */
+.call-controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.call-controls .control-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: auto;
+}
+
+.call-controls .control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.call-controls .control-btn.active {
+    background: #059669;
+}
+
+.call-controls .control-btn.inactive {
+    background: #dc2626;
+}
+
+.call-controls .control-btn.leave-btn {
+    background: #dc2626;
+}
+
+.call-controls .control-btn.leave-btn:hover {
+    background: #b91c1c;
+}
+
+.call-controls .control-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Consultation Details Panel */
+.consultation-details-panel {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 300px;
+    z-index: 5;
+}
+
+.consultation-details-panel h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.detail-section {
+    margin-bottom: 1rem;
+}
+
+.detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.detail-section h5 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.symptoms-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.symptom-tag {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.detail-section p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .call-header {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .consultation-details {
+        flex-wrap: wrap;
+    }
+
+    .pre-call-content {
+        padding: 1rem;
+    }
+
+    .camera-preview {
+        width: 250px;
+        height: 150px;
+    }
+
+    .pre-call-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .local-video-container {
+        width: 120px;
+        height: 90px;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .participants-info {
+        top: 0.5rem;
+        left: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .call-controls {
+        bottom: 1rem;
+        padding: 0.75rem;
+    }
+
+    .call-controls .control-btn {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .consultation-details-panel {
+        position: static;
+        margin: 1rem;
+        max-width: none;
+    }
+}
+
+/* Video element styles */
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}

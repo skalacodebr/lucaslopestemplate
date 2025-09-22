@@ -1,0 +1,105 @@
+/* Consultation Card Component Styles */
+.consultation-card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.consultation-card-header {
+    @apply px-6 py-4 border-b border-gray-100;
+}
+
+.consultation-card-body {
+    @apply px-6 py-4;
+}
+
+.consultation-card-footer {
+    @apply px-6 py-4 bg-gray-50 border-t border-gray-100 rounded-b-lg;
+}
+
+.consultation-patient-info {
+    @apply flex items-center space-x-3;
+}
+
+.consultation-patient-avatar {
+    @apply h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold;
+}
+
+.consultation-patient-details {
+    @apply flex-1;
+}
+
+.consultation-patient-name {
+    @apply text-lg font-semibold text-gray-900;
+}
+
+.consultation-patient-age {
+    @apply text-sm text-gray-600;
+}
+
+.consultation-datetime {
+    @apply flex items-center space-x-2 text-sm text-gray-600 mt-2;
+}
+
+.consultation-datetime-icon {
+    @apply h-4 w-4 text-gray-400;
+}
+
+.consultation-status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.consultation-status-badge.scheduled {
+    @apply bg-blue-100 text-blue-800;
+}
+
+.consultation-status-badge.confirmed {
+    @apply bg-green-100 text-green-800;
+}
+
+.consultation-status-badge.in-progress {
+    @apply bg-yellow-100 text-yellow-800;
+}
+
+.consultation-status-badge.completed {
+    @apply bg-gray-100 text-gray-800;
+}
+
+.consultation-status-badge.cancelled {
+    @apply bg-red-100 text-red-800;
+}
+
+.consultation-actions {
+    @apply flex items-center justify-between;
+}
+
+.consultation-action-btn {
+    @apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-200;
+}
+
+.consultation-action-btn.primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.consultation-action-btn.secondary {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+}
+
+.consultation-fee {
+    @apply text-sm font-semibold text-green-600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .consultation-card-header,
+    .consultation-card-body,
+    .consultation-card-footer {
+        @apply px-4 py-3;
+    }
+
+    .consultation-actions {
+        @apply flex-col space-y-2;
+    }
+
+    .consultation-patient-info {
+        @apply flex-col items-start space-x-0 space-y-2;
+    }
+}

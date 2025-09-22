@@ -67,10 +67,40 @@
     @apply bg-red-100 text-red-800;
 }
 
+<<<<<<< Updated upstream
+=======
+.consultation-status-badge.no-show {
+    @apply bg-orange-100 text-orange-800;
+}
+
+.consultation-type-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800;
+}
+
+.consultation-specialty {
+    @apply text-sm text-gray-600 font-medium;
+}
+
+.consultation-notes-preview {
+    @apply text-sm text-gray-700 mt-2 line-clamp-2;
+}
+
+>>>>>>> Stashed changes
 .consultation-actions {
     @apply flex items-center justify-between;
 }
 
+<<<<<<< Updated upstream
+=======
+.consultation-actions-left {
+    @apply flex items-center space-x-2;
+}
+
+.consultation-actions-right {
+    @apply flex items-center space-x-2;
+}
+
+>>>>>>> Stashed changes
 .consultation-action-btn {
     @apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-200;
 }
@@ -83,10 +113,64 @@
     @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
 }
 
+<<<<<<< Updated upstream
+=======
+.consultation-action-btn.success {
+    @apply bg-green-600 text-white hover:bg-green-700;
+}
+
+.consultation-action-btn.danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.consultation-action-btn.warning {
+    @apply bg-yellow-600 text-white hover:bg-yellow-700;
+}
+
+.consultation-action-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.consultation-duration {
+    @apply text-xs text-gray-500;
+}
+
+>>>>>>> Stashed changes
 .consultation-fee {
     @apply text-sm font-semibold text-green-600;
 }
 
+<<<<<<< Updated upstream
+=======
+.consultation-reminder {
+    @apply flex items-center space-x-1 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded;
+}
+
+.consultation-reminder-icon {
+    @apply h-3 w-3;
+}
+
+.consultation-card.urgent {
+    @apply border-red-300 bg-red-50;
+}
+
+.consultation-card.urgent .consultation-card-header {
+    @apply bg-red-100 border-red-200;
+}
+
+.consultation-card-skeleton {
+    @apply animate-pulse;
+}
+
+.consultation-card-skeleton .skeleton-line {
+    @apply bg-gray-300 rounded;
+}
+
+.consultation-card-skeleton .skeleton-avatar {
+    @apply bg-gray-300 rounded-full;
+}
+
+>>>>>>> Stashed changes
 /* Responsive adjustments */
 @media (max-width: 640px) {
     .consultation-card-header,
@@ -99,6 +183,14 @@
         @apply flex-col space-y-2;
     }
 
+<<<<<<< Updated upstream
+=======
+    .consultation-actions-left,
+    .consultation-actions-right {
+        @apply w-full justify-center;
+    }
+
+>>>>>>> Stashed changes
     .consultation-patient-info {
         @apply flex-col items-start space-x-0 space-y-2;
     }

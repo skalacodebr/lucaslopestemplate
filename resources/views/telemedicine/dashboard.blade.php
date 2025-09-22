@@ -2,6 +2,7 @@
 
 @section('title', 'Dashboard - Telemedicina')
 
+<<<<<<< Updated upstream
 @section('content')
 <div class="min-h-screen bg-gray-50" x-data="telemedicineBoard()">
     <!-- Dashboard Header -->
@@ -13,12 +14,40 @@
                         Olá, {{ auth()->user()->full_name ?? auth()->user()->name }}
                     </h1>
                     <p class="text-gray-600">
+=======
+@push('styles')
+    @vite('resources/css/pages/telemedicine.css')
+    @vite('resources/css/components/consultation-card.css')
+@endpush
+
+@push('scripts')
+    @vite('resources/js/pages/telemedicine.js')
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.18.0.js"></script>
+@endpush
+
+@section('content')
+<div class="telemedicine-dashboard" x-data="telemedicineBoard">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="dashboard-title">
+                        Olá, {{ auth()->user()->full_name ?? auth()->user()->name }}
+                    </h1>
+                    <p class="dashboard-subtitle">
+>>>>>>> Stashed changes
                         Bem-vindo ao seu painel de telemedicina
                     </p>
                 </div>
                 <div class="flex items-center space-x-4">
+<<<<<<< Updated upstream
                     <button @click="loadConsultations()" class="bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-2 px-4 rounded-lg transition-colors">
                         <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+=======
+                    <button @click="loadConsultations()" class="btn-secondary">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+>>>>>>> Stashed changes
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
                         Atualizar
@@ -32,12 +61,21 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- Stats Grid -->
+<<<<<<< Updated upstream
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">{{ $stats['total_consultations'] ?? 0 }}</p>
                         <p class="text-sm text-gray-600 mt-1">Consultas Hoje</p>
+=======
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="stat-value">{{ $stats['total_consultations'] ?? 0 }}</p>
+                        <p class="stat-label">Consultas Hoje</p>
+>>>>>>> Stashed changes
                     </div>
                     <div class="text-blue-600">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,16 +83,28 @@
                         </svg>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
                     +12% desde ontem
                 </div>
             </div>
 
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">{{ $stats['active_patients'] ?? 0 }}</p>
                         <p class="text-sm text-gray-600 mt-1">Pacientes Ativos</p>
+=======
+            <div class="stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="stat-value">{{ $stats['active_patients'] ?? 0 }}</p>
+                        <p class="stat-label">Pacientes Ativos</p>
+>>>>>>> Stashed changes
                     </div>
                     <div class="text-green-600">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,16 +112,28 @@
                         </svg>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
                     +3 novos hoje
                 </div>
             </div>
 
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">R$ {{ number_format($stats['total_revenue'] ?? 0, 2, ',', '.') }}</p>
                         <p class="text-sm text-gray-600 mt-1">Receita do Mês</p>
+=======
+            <div class="stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="stat-value">R$ {{ number_format($stats['total_revenue'] ?? 0, 2, ',', '.') }}</p>
+                        <p class="stat-label">Receita do Mês</p>
+>>>>>>> Stashed changes
                     </div>
                     <div class="text-purple-600">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,16 +141,28 @@
                         </svg>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
                     +18% vs mês anterior
                 </div>
             </div>
 
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['satisfaction_rate'] ?? 0, 1) }}%</p>
                         <p class="text-sm text-gray-600 mt-1">Satisfação</p>
+=======
+            <div class="stat-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="stat-value">{{ number_format($stats['satisfaction_rate'] ?? 0, 1) }}%</p>
+                        <p class="stat-label">Satisfação</p>
+>>>>>>> Stashed changes
                     </div>
                     <div class="text-yellow-600">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,7 +170,11 @@
                         </svg>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
                     +0.5% este mês
                 </div>
             </div>
@@ -125,6 +203,7 @@
 
         <!-- Tab Content -->
         <div x-show="activeTab === 'consultations'">
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow mb-8">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-900">Próximas Consultas</h3>
@@ -256,10 +335,57 @@
                             <p class="mt-1 text-sm text-gray-500">Não há profissionais verificados disponíveis no momento.</p>
                         </div>
                     @endif
+=======
+            <div class="consultation-section">
+                <div class="section-header">
+                    <h3 class="section-title">Próximas Consultas</h3>
+                </div>
+                <div class="consultation-list">
+                    <template x-for="consultation in upcomingConsultations" :key="consultation.id">
+                        <div class="consultation-card">
+                            <div class="consultation-card-body">
+                                <div class="consultation-patient-info">
+                                    <div class="consultation-patient-avatar" x-text="consultation.patient.name.charAt(0)"></div>
+                                    <div class="consultation-patient-details">
+                                        <h4 class="consultation-patient-name" x-text="consultation.patient.name"></h4>
+                                        <p class="consultation-patient-age" x-text="`${consultation.patient.age} anos`"></p>
+                                        <div class="consultation-datetime">
+                                            <svg class="consultation-datetime-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                            <span x-text="formatDate(consultation.scheduled_at)"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end space-y-2">
+                                        <span class="consultation-status-badge"
+                                              :class="consultation.status"
+                                              x-text="consultation.status_label"></span>
+                                        <span class="consultation-fee" x-text="formatCurrency(consultation.fee)"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="consultation-card-footer">
+                                <div class="consultation-actions">
+                                    <div class="consultation-actions-left">
+                                        <span class="consultation-specialty" x-text="consultation.specialty"></span>
+                                    </div>
+                                    <div class="consultation-actions-right">
+                                        <button @click="startConsultation(consultation.id)"
+                                                class="consultation-action-btn primary"
+                                                :disabled="consultation.status !== 'confirmed'">
+                                            Iniciar Consulta
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
 
+<<<<<<< Updated upstream
         <div x-show="activeTab === 'records'">
             <div class="bg-white rounded-lg shadow mb-8">
                 <div class="px-6 py-4 border-b border-gray-200">
@@ -279,12 +405,17 @@
 
         <!-- Loading Overlay -->
         <div x-show="loading"
+=======
+        <!-- Video Call Modal -->
+        <div x-show="videoCallActive"
+>>>>>>> Stashed changes
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
+<<<<<<< Updated upstream
              class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
             <div class="relative top-1/2 mx-auto p-5 w-96 transform -translate-y-1/2">
                 <div class="bg-white rounded-lg shadow-lg p-6 text-center">
@@ -333,4 +464,71 @@ window.authUserId = {{ auth()->id() }};
 </script>
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+=======
+             class="fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="video-call-container">
+                            <div id="remote-video" class="w-full h-full bg-gray-900 rounded-lg"></div>
+                            <div id="local-video" class="absolute top-4 right-4 w-32 h-24 bg-gray-800 rounded-lg"></div>
+
+                            <div class="video-controls">
+                                <button @click="toggleAudio()" class="video-control-btn">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                                    </svg>
+                                </button>
+                                <button @click="toggleVideo()" class="video-control-btn">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                                <button @click="endCall()" class="video-control-btn danger">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 3l1.5 1.5M3 3l1.5 1.5M3 3v18l7.5-7.5L18 21v-18L10.5 10.5"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="quick-action-btn" title="Nova Consulta">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div x-show="loading"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-1/2 mx-auto p-5 w-96 transform -translate-y-1/2">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="mt-4 text-gray-600">Carregando...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script>
+    window.authUserId = {{ auth()->id() }};
+</script>
+>>>>>>> Stashed changes
 @endsection

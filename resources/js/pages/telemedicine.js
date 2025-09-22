@@ -6,8 +6,11 @@
 import Alpine from 'alpinejs';
 
 document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< Updated upstream
     console.log('Telemedicine Dashboard loaded');
 
+=======
+>>>>>>> Stashed changes
     // Initialize Alpine.js components
     Alpine.data('telemedicineBoard', () => ({
         // Dashboard state
@@ -20,8 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
         loading: false,
         videoCallActive: false,
 
+<<<<<<< Updated upstream
         init() {
             this.loadConsultations();
+=======
+        // Video call state
+        localStream: null,
+        remoteStream: null,
+        peerConnection: null,
+
+        // Agora.io integration
+        agoraClient: null,
+        agoraEngine: null,
+        channelName: null,
+        token: null,
+        uid: null,
+
+        init() {
+            this.loadConsultations();
+            this.initializeNotifications();
+>>>>>>> Stashed changes
             this.setupEventListeners();
         },
 
@@ -35,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         async loadConsultations() {
             this.loading = true;
             try {
+<<<<<<< Updated upstream
                 // Simular API call
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -51,6 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 ];
 
+=======
+                const response = await fetch('/api/consultations');
+                this.consultations = await response.json();
+>>>>>>> Stashed changes
                 this.filterUpcomingConsultations();
             } catch (error) {
                 this.showNotification('Erro ao carregar consultas', 'error');
@@ -66,7 +92,157 @@ document.addEventListener('DOMContentLoaded', function() {
             );
         },
 
+<<<<<<< Updated upstream
         // Notification system
+=======
+        async startConsultation(consultationId) {
+            try {
+                this.loading = true;
+
+                // Get consultation details and join token
+                const response = await fetch(`/api/consultations/${consultationId}/start`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    await this.initializeVideoCall(data.channel, data.token, data.uid);
+                    this.showNotification('Consulta iniciada com sucesso', 'success');
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                this.showNotification(error.message || 'Erro ao iniciar consulta', 'error');
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        // Video call functionality with Agora.io
+        async initializeVideoCall(channelName, token, uid) {
+            try {
+                // Initialize Agora engine
+                this.agoraEngine = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+
+                this.channelName = channelName;
+                this.token = token;
+                this.uid = uid;
+
+                // Set up event listeners
+                this.agoraEngine.on('user-published', this.handleUserPublished.bind(this));
+                this.agoraEngine.on('user-unpublished', this.handleUserUnpublished.bind(this));
+
+                // Join channel
+                await this.agoraEngine.join(this.token, this.channelName, this.uid);
+
+                // Create and publish local tracks
+                const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+                const localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+
+                this.localStream = [localAudioTrack, localVideoTrack];
+
+                // Play local video
+                localVideoTrack.play('local-video');
+
+                // Publish local tracks
+                await this.agoraEngine.publish(this.localStream);
+
+                this.videoCallActive = true;
+
+            } catch (error) {
+                console.error('Erro ao inicializar chamada de vídeo:', error);
+                this.showNotification('Erro ao conectar à chamada de vídeo', 'error');
+            }
+        },
+
+        async handleUserPublished(user, mediaType) {
+            await this.agoraEngine.subscribe(user, mediaType);
+
+            if (mediaType === 'video') {
+                user.videoTrack.play('remote-video');
+            }
+
+            if (mediaType === 'audio') {
+                user.audioTrack.play();
+            }
+        },
+
+        handleUserUnpublished(user) {
+            // Handle user leaving the call
+            this.showNotification('Usuário saiu da chamada', 'info');
+        },
+
+        async endCall() {
+            try {
+                // Stop local tracks
+                if (this.localStream) {
+                    this.localStream.forEach(track => {
+                        track.stop();
+                        track.close();
+                    });
+                }
+
+                // Leave channel
+                if (this.agoraEngine) {
+                    await this.agoraEngine.leave();
+                }
+
+                this.videoCallActive = false;
+                this.localStream = null;
+                this.remoteStream = null;
+
+                this.showNotification('Chamada encerrada', 'info');
+
+            } catch (error) {
+                console.error('Erro ao encerrar chamada:', error);
+                this.showNotification('Erro ao encerrar chamada', 'error');
+            }
+        },
+
+        toggleAudio() {
+            if (this.localStream && this.localStream[0]) {
+                const audioTrack = this.localStream[0];
+                if (audioTrack.enabled) {
+                    audioTrack.setEnabled(false);
+                    this.showNotification('Áudio desabilitado', 'info');
+                } else {
+                    audioTrack.setEnabled(true);
+                    this.showNotification('Áudio habilitado', 'info');
+                }
+            }
+        },
+
+        toggleVideo() {
+            if (this.localStream && this.localStream[1]) {
+                const videoTrack = this.localStream[1];
+                if (videoTrack.enabled) {
+                    videoTrack.setEnabled(false);
+                    this.showNotification('Vídeo desabilitado', 'info');
+                } else {
+                    videoTrack.setEnabled(true);
+                    this.showNotification('Vídeo habilitado', 'info');
+                }
+            }
+        },
+
+        // Notification system
+        initializeNotifications() {
+            // Set up real-time notifications (WebSocket or Pusher)
+            if (typeof Echo !== 'undefined') {
+                Echo.private(`user.${window.authUserId}`)
+                    .notification((notification) => {
+                        this.notifications.unshift(notification);
+                        this.showNotification(notification.message, notification.type);
+                    });
+            }
+        },
+
+>>>>>>> Stashed changes
         showNotification(message, type = 'info') {
             const notification = {
                 id: Date.now(),
@@ -79,7 +255,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create toast element
             const toast = document.createElement('div');
+<<<<<<< Updated upstream
             toast.className = `fixed top-4 right-4 bg-white border rounded-lg shadow-lg p-4 z-50 notification-${type}`;
+=======
+            toast.className = `notification-toast notification-${type}`;
+>>>>>>> Stashed changes
             toast.innerHTML = `
                 <div class="flex items-center">
                     <div class="flex-1">
@@ -103,8 +283,117 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 5000);
         },
 
+<<<<<<< Updated upstream
         // Event listeners
         setupEventListeners() {
+=======
+        // Professional search and booking
+        async searchProfessionals(specialty = null, query = null) {
+            try {
+                const params = new URLSearchParams();
+                if (specialty) params.append('specialty', specialty);
+                if (query) params.append('q', query);
+
+                const response = await fetch(`/api/professionals/search?${params}`);
+                return await response.json();
+            } catch (error) {
+                this.showNotification('Erro ao buscar profissionais', 'error');
+                return [];
+            }
+        },
+
+        async bookConsultation(professionalId, datetime) {
+            try {
+                const response = await fetch('/api/consultations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        professional_id: professionalId,
+                        scheduled_at: datetime
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    this.showNotification('Consulta agendada com sucesso', 'success');
+                    this.loadConsultations();
+                    return data.consultation;
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                this.showNotification(error.message || 'Erro ao agendar consulta', 'error');
+                return null;
+            }
+        },
+
+        // Medical records
+        async loadMedicalRecords() {
+            try {
+                const response = await fetch('/api/medical-records');
+                return await response.json();
+            } catch (error) {
+                this.showNotification('Erro ao carregar prontuários', 'error');
+                return [];
+            }
+        },
+
+        // Chat functionality
+        initializeChat() {
+            // Initialize chat functionality for consultations
+            if (typeof Echo !== 'undefined' && this.channelName) {
+                Echo.private(`consultation.${this.channelName}`)
+                    .listen('MessageSent', (e) => {
+                        this.displayChatMessage(e.message);
+                    });
+            }
+        },
+
+        sendChatMessage(message) {
+            // Send chat message during consultation
+            fetch('/api/consultation/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    channel: this.channelName,
+                    message: message
+                })
+            });
+        },
+
+        displayChatMessage(message) {
+            // Display chat message in the interface
+            const chatContainer = document.getElementById('chat-messages');
+            if (chatContainer) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'chat-message';
+                messageElement.innerHTML = `
+                    <div class="font-medium">${message.sender_name}</div>
+                    <div class="text-sm text-gray-600">${message.content}</div>
+                    <div class="text-xs text-gray-400">${new Date(message.created_at).toLocaleTimeString()}</div>
+                `;
+                chatContainer.appendChild(messageElement);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        },
+
+        // Event listeners
+        setupEventListeners() {
+            // Handle beforeunload to clean up video calls
+            window.addEventListener('beforeunload', () => {
+                if (this.videoCallActive) {
+                    this.endCall();
+                }
+            });
+
+>>>>>>> Stashed changes
             // Handle online/offline status
             window.addEventListener('online', () => {
                 this.showNotification('Conexão reestabelecida', 'success');
@@ -122,7 +411,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.loadConsultations();
                     break;
                 case 'professionals':
+<<<<<<< Updated upstream
                     this.loadProfessionals();
+=======
+                    this.searchProfessionals();
+>>>>>>> Stashed changes
                     break;
                 case 'records':
                     this.loadMedicalRecords();
@@ -130,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
+<<<<<<< Updated upstream
         async loadProfessionals() {
             this.loading = true;
             try {
@@ -154,6 +448,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
+=======
+>>>>>>> Stashed changes
         formatDate(date) {
             return new Date(date).toLocaleDateString('pt-BR', {
                 year: 'numeric',
@@ -179,6 +475,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Export functions for global access
 window.TelemedicineApp = {
     showNotification: function(message, type) {
+<<<<<<< Updated upstream
         console.log(`[${type.toUpperCase()}] ${message}`);
+=======
+        // Global notification function
+        Alpine.store('notifications').add(message, type);
+>>>>>>> Stashed changes
     }
 };

@@ -99,10 +99,120 @@
     @apply bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-colors;
 }
 
+<<<<<<< Updated upstream
+=======
+.patient-avatar {
+    @apply h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-medium;
+}
+
+.professional-card {
+    @apply bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow;
+}
+
+.professional-avatar {
+    @apply h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl;
+}
+
+.professional-name {
+    @apply text-lg font-semibold text-gray-900 mt-3;
+}
+
+.professional-specialty {
+    @apply text-sm text-gray-600;
+}
+
+.professional-rating {
+    @apply flex items-center mt-2;
+}
+
+.rating-stars {
+    @apply text-yellow-400 text-sm mr-1;
+}
+
+.rating-count {
+    @apply text-sm text-gray-600;
+}
+
+.professional-fee {
+    @apply text-lg font-bold text-green-600 mt-3;
+}
+
+>>>>>>> Stashed changes
 .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors;
 }
 
 .btn-secondary {
     @apply bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-2 px-4 rounded-lg transition-colors;
+<<<<<<< Updated upstream
+=======
+}
+
+.video-call-container {
+    @apply relative w-full h-96 bg-black rounded-lg overflow-hidden;
+}
+
+.video-controls {
+    @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4;
+}
+
+.video-control-btn {
+    @apply bg-gray-800 bg-opacity-75 hover:bg-opacity-100 text-white p-3 rounded-full transition-all;
+}
+
+.video-control-btn.danger {
+    @apply bg-red-600 hover:bg-red-700;
+}
+
+.medical-record-section {
+    @apply space-y-6;
+}
+
+.record-header {
+    @apply flex justify-between items-center pb-4 border-b border-gray-200;
+}
+
+.record-title {
+    @apply text-xl font-semibold text-gray-900;
+}
+
+.record-date {
+    @apply text-sm text-gray-600;
+}
+
+.record-content {
+    @apply prose max-w-none;
+}
+
+.prescription-item {
+    @apply bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4;
+}
+
+.medication-name {
+    @apply font-semibold text-blue-900;
+}
+
+.medication-instructions {
+    @apply text-sm text-blue-700 mt-1;
+}
+
+.notification-toast {
+    @apply fixed top-4 right-4 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50;
+}
+
+.notification-success {
+    @apply border-green-200 bg-green-50;
+}
+
+.notification-error {
+    @apply border-red-200 bg-red-50;
+}
+
+.notification-warning {
+    @apply border-yellow-200 bg-yellow-50;
+}
+
+.notification-info {
+    @apply border-blue-200 bg-blue-50;
+>>>>>>> Stashed changes
 }

@@ -23,6 +23,11 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'company_name',
+        'cnpj',
+        'address',
     ];
 
     /**
@@ -53,7 +58,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->role === 'admin';
     }
 
     /**
@@ -64,5 +69,45 @@ class User extends Authenticatable implements FilamentUser
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * CAT requests belonging to the user.
+     */
+    public function catRequests()
+    {
+        return $this->hasMany(CatRequest::class);
+    }
+
+    /**
+     * PPP requests belonging to the user.
+     */
+    public function pppRequests()
+    {
+        return $this->hasMany(PppRequest::class);
+    }
+
+    /**
+     * Billings belonging to the user.
+     */
+    public function billings()
+    {
+        return $this->hasMany(Billing::class);
+    }
+
+    /**
+     * Check if user is admin.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Check if user is client.
+     */
+    public function isClient(): bool
+    {
+        return $this->role === 'client';
     }
 }

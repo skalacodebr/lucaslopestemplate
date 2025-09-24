@@ -4,36 +4,34 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Spatie\SchemaOrg\Schema;
 
 class Home extends Component
 {
-    use WithPagination;
-
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
     public function render()
     {
         seo()
-            ->title($title = config('app.name'))
-            ->description($description = 'Lorem ipsum...')
+            ->title($title = 'Global SST - Consultoria em Saúde e Segurança do Trabalho')
+            ->description($description = 'Especialistas em PCMSO, PGR, LTCAT, PPP e eSocial. Aumente sua produtividade em 2% com nossa consultoria em SST. Mais de 10 anos de experiência.')
             ->canonical($url = route('home'))
             ->addSchema(
-                Schema::webPage()
-                    ->name($title)
+                Schema::organization()
+                    ->name('Global SST')
                     ->description($description)
                     ->url($url)
-                    ->author(Schema::organization()->name($title))
+                    ->contactPoint(
+                        Schema::contactPoint()
+                            ->telephone('+55-11-99999-9999')
+                            ->contactType('Customer Service')
+                    )
             );
 
-        $posts = Post::published()
+        // Buscar últimas 3 notícias para seção de novidades
+        $latestNews = Post::published()
             ->latest('published_at')
-            ->paginate(6);
+            ->limit(3)
+            ->get();
 
-        return view('livewire.home', compact('posts'));
+        return view('livewire.home', compact('latestNews'));
     }
 }

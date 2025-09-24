@@ -18,6 +18,9 @@
       </div>
 
       <x-sections.footer />
+
+      {{-- Menu Flutuante Lateral --}}
+      <x-floating-menu />
     </div>
 
     @livewireScriptConfig

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Billing;
+use App\Observers\BillingObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Billing::observe(BillingObserver::class);
     }
 }

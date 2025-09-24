@@ -157,6 +157,23 @@ class CatRequestResource extends Resource
                         Infolists\Components\TextEntry::make('hospital_name')->label('Hospital'),
                         Infolists\Components\TextEntry::make('doctor_name')->label('Médico'),
                         Infolists\Components\TextEntry::make('medical_report')->label('Relatório Médico')->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('attachments')
+                            ->label('Anexos')
+                            ->formatStateUsing(function ($state) {
+                                if (!$state) return 'Nenhum anexo';
+
+                                $attachments = json_decode($state, true) ?: [];
+                                if (empty($attachments)) return 'Nenhum anexo';
+
+                                $links = array_map(function($attachment) {
+                                    $filename = basename($attachment);
+                                    return '<a href="' . asset('storage/' . $attachment) . '" target="_blank" class="text-blue-600 underline">' . $filename . '</a>';
+                                }, $attachments);
+
+                                return implode('<br>', $links);
+                            })
+                            ->html()
+                            ->columnSpanFull(),
                     ])->columns(2),
 
                 Infolists\Components\Section::make('Controle')

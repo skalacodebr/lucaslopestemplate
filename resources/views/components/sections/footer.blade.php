@@ -3,9 +3,8 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       {{-- Logo e Descrição --}}
       <div class="md:col-span-2">
-        <div class="flex items-center mb-4">
-          <img src="{{ asset('logo.jpg') }}" alt="Global SST" class="h-8 w-auto mr-3 brightness-0 invert">
-          <span class="text-xl font-bold">Global SST</span>
+        <div class="mb-4">
+          <img src="{{ asset('logo.jpg') }}" alt="Global SST" class="h-8 w-auto brightness-0 invert">
         </div>
         <p class="text-gray-300 mb-4">
           Especialistas em Saúde e Segurança do Trabalho há mais de 10 anos.

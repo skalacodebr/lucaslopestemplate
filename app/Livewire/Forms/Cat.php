@@ -7,7 +7,11 @@ use Livewire\WithFileUploads;
 use Spatie\SchemaOrg\Schema;
 use App\Models\CatRequest;
 use App\Models\User;
+use App\Mail\CatRequestSubmitted;
+use App\Rules\ValidCnpj;
+use App\Rules\ValidCpf;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class Cat extends Component
 {
@@ -48,29 +52,32 @@ class Cat extends Component
 
     public $showSuccessMessage = false;
 
-    protected $rules = [
-        'company_name' => 'required|min:2',
-        'cnpj' => 'required|min:14',
-        'company_phone' => 'required|min:10',
-        'company_email' => 'required|email',
-        'company_address' => 'required|min:10',
-        'employee_name' => 'required|min:3',
-        'cpf' => 'required|min:11',
-        'birth_date' => 'required|date',
-        'job_position' => 'required|min:2',
-        'admission_date' => 'required|date',
-        'employee_phone' => 'required|min:10',
-        'accident_date' => 'required|date',
-        'accident_time' => 'required',
-        'accident_location' => 'required|min:5',
-        'accident_description' => 'required|min:20',
-        'injury_type' => 'required',
-        'injured_body_part' => 'required',
-        'medical_care' => 'boolean',
-        'hospital_name' => 'required_if:medical_care,true',
-        'doctor_name' => 'required_if:medical_care,true',
-        'attachments.*' => 'file|max:10240' // 10MB max por arquivo
-    ];
+    protected function rules()
+    {
+        return [
+            'company_name' => 'required|min:2',
+            'cnpj' => ['required', new ValidCnpj()],
+            'company_phone' => 'required|min:10',
+            'company_email' => 'required|email',
+            'company_address' => 'required|min:10',
+            'employee_name' => 'required|min:3',
+            'cpf' => ['required', new ValidCpf()],
+            'birth_date' => 'required|date',
+            'job_position' => 'required|min:2',
+            'admission_date' => 'required|date',
+            'employee_phone' => 'required|min:10',
+            'accident_date' => 'required|date',
+            'accident_time' => 'required',
+            'accident_location' => 'required|min:5',
+            'accident_description' => 'required|min:20',
+            'injury_type' => 'required',
+            'injured_body_part' => 'required',
+            'medical_care' => 'boolean',
+            'hospital_name' => 'required_if:medical_care,true',
+            'doctor_name' => 'required_if:medical_care,true',
+            'attachments.*' => 'file|max:10240' // 10MB max por arquivo
+        ];
+    }
 
     protected $messages = [
         'company_name.required' => 'Nome da empresa é obrigatório',
@@ -106,7 +113,7 @@ class Cat extends Component
 
             $attachmentPaths = $this->handleAttachments();
 
-            CatRequest::create([
+            $catRequest = CatRequest::create([
                 'user_id' => $user->id,
                 'company_name' => $this->company_name,
                 'cnpj' => $this->cnpj,
@@ -133,6 +140,14 @@ class Cat extends Component
                 'attachments' => $attachmentPaths,
                 'status' => 'pending'
             ]);
+
+            // Enviar e-mail de confirmação
+            try {
+                Mail::to($user->email)->send(new CatRequestSubmitted($catRequest));
+            } catch (\Exception $e) {
+                // Log do erro, mas não impede o fluxo
+                \Log::error('Erro ao enviar e-mail CAT: ' . $e->getMessage());
+            }
 
             $this->showSuccessMessage = true;
 

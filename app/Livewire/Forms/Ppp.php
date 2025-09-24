@@ -6,6 +6,10 @@ use Livewire\Component;
 use Spatie\SchemaOrg\Schema;
 use App\Models\PppRequest;
 use App\Models\User;
+use App\Mail\PppRequestSubmitted;
+use App\Rules\ValidCnpj;
+use App\Rules\ValidCpf;
+use Illuminate\Support\Facades\Mail;
 
 class Ppp extends Component
 {
@@ -35,21 +39,24 @@ class Ppp extends Component
 
     public $showSuccessMessage = false;
 
-    protected $rules = [
-        'company_name' => 'required|min:2',
-        'cnpj' => 'required|min:14',
-        'company_phone' => 'required|min:10',
-        'company_email' => 'required|email',
-        'employee_name' => 'required|min:3',
-        'cpf' => 'required|min:11',
-        'birth_date' => 'required|date',
-        'admission_date' => 'required|date',
-        'job_position' => 'required|min:2',
-        'request_reason' => 'required',
-        'period_start' => 'required|date',
-        'period_end' => 'required|date|after:period_start',
-        'urgency_reason' => 'required_if:is_urgent,true'
-    ];
+    protected function rules()
+    {
+        return [
+            'company_name' => 'required|min:2',
+            'cnpj' => ['required', new ValidCnpj()],
+            'company_phone' => 'required|min:10',
+            'company_email' => 'required|email',
+            'employee_name' => 'required|min:3',
+            'cpf' => ['required', new ValidCpf()],
+            'birth_date' => 'required|date',
+            'admission_date' => 'required|date',
+            'job_position' => 'required|min:2',
+            'request_reason' => 'required',
+            'period_start' => 'required|date',
+            'period_end' => 'required|date|after:period_start',
+            'urgency_reason' => 'required_if:is_urgent,true'
+        ];
+    }
 
     protected $messages = [
         'company_name.required' => 'Nome da empresa é obrigatório',
@@ -78,7 +85,7 @@ class Ppp extends Component
 
             $price = $this->is_urgent ? 300.00 : 200.00;
 
-            PppRequest::create([
+            $pppRequest = PppRequest::create([
                 'user_id' => $user->id,
                 'company_name' => $this->company_name,
                 'cnpj' => $this->cnpj,
@@ -99,6 +106,14 @@ class Ppp extends Component
                 'status' => 'pending',
                 'price' => $price
             ]);
+
+            // Enviar e-mail de confirmação
+            try {
+                Mail::to($user->email)->send(new PppRequestSubmitted($pppRequest));
+            } catch (\Exception $e) {
+                // Log do erro, mas não impede o fluxo
+                \Log::error('Erro ao enviar e-mail PPP: ' . $e->getMessage());
+            }
 
             $this->showSuccessMessage = true;
 

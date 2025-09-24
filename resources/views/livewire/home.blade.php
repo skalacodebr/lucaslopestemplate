@@ -26,6 +26,14 @@
           >
             Nossos Serviços
           </x-button>
+          <x-button
+            size="lg"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4"
+            href="{{ route('client.login') }}"
+            wire:navigate
+          >
+            🔐 Área do Cliente
+          </x-button>
         </div>
       </div>
     </x-container>
@@ -90,6 +98,77 @@
           <h3 class="text-xl font-semibold mb-2">eSocial</h3>
           <p class="text-gray-600 mb-4">Integração e compliance com eSocial</p>
           <a href="/servicos/esocial" class="text-orange-600 font-medium hover:underline">Saiba mais →</a>
+        </div>
+      </div>
+    </x-container>
+  </section>
+
+  {{-- Área do Cliente - Destaque --}}
+  <section class="py-16 bg-indigo-900 text-white">
+    <x-container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Área do Cliente
+        </h2>
+        <p class="text-xl text-indigo-100 mb-8">
+          Acompanhe suas solicitações, cobranças e histórico de serviços
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {{-- Solicitações Online --}}
+        <div class="text-center">
+          <div class="bg-indigo-800 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Solicitações Online</h3>
+          <p class="text-indigo-200">
+            Faça solicitações de CAT e PPP diretamente pelo sistema
+          </p>
+        </div>
+
+        {{-- Acompanhamento --}}
+        <div class="text-center">
+          <div class="bg-indigo-800 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Acompanhamento</h3>
+          <p class="text-indigo-200">
+            Visualize o status de todas as suas solicitações em tempo real
+          </p>
+        </div>
+
+        {{-- Controle Financeiro --}}
+        <div class="text-center">
+          <div class="bg-indigo-800 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Controle Financeiro</h3>
+          <p class="text-indigo-200">
+            Acompanhe suas cobranças, vencimentos e histórico de pagamentos
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="{{ route('client.login') }}"
+           class="inline-flex items-center justify-center px-8 py-3 bg-white text-indigo-900 font-semibold rounded-lg hover:bg-indigo-50 transition-colors"
+           wire:navigate>
+          🔐 Acessar Área do Cliente
+        </a>
+        <div class="text-center sm:text-left">
+          <p class="text-indigo-200 text-sm mb-1">
+            Ainda não tem acesso?
+          </p>
+          <p class="text-indigo-100 text-sm">
+            Suas credenciais são criadas automaticamente ao fazer sua primeira solicitação
+          </p>
         </div>
       </div>
     </x-container>

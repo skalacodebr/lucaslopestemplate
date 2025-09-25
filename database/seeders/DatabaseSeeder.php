@@ -17,19 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
             ProfessionalSeeder::class,
-=======
-=======
->>>>>>> Stashed changes
-        ]);
-
-        $user = User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@admin.test',
-            'password' => Hash::make('admin'),
->>>>>>> Stashed changes
         ]);
 
         $user = User::firstOrCreate(

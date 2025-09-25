@@ -93,15 +93,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function roles()
     {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        return $this->belongsToMany(\App\Models\Role::class, 'user_roles')
-=======
         return $this->belongsToMany(Role::class, 'user_roles')
->>>>>>> Stashed changes
-=======
-        return $this->belongsToMany(Role::class, 'user_roles')
->>>>>>> Stashed changes
             ->withPivot(['assigned_at', 'expires_at', 'is_active'])
             ->withTimestamps();
     }
@@ -111,15 +103,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function hasRole(string $roleSlug): bool
     {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         return $this->roles()->where('slug', $roleSlug)->where('user_roles.is_active', true)->exists();
-=======
-        return $this->roles()->where('slug', $roleSlug)->where('is_active', true)->exists();
->>>>>>> Stashed changes
-=======
-        return $this->roles()->where('slug', $roleSlug)->where('is_active', true)->exists();
->>>>>>> Stashed changes
     }
 
     /**
@@ -143,15 +127,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function isAdmin(): bool
     {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         return $this->hasRole('admin') || $this->hasRole('super-admin');
-=======
-        return $this->hasRole('admin');
->>>>>>> Stashed changes
-=======
-        return $this->hasRole('admin');
->>>>>>> Stashed changes
     }
 
     /**
@@ -171,15 +147,7 @@ class User extends Authenticatable implements FilamentUser
     public function hasPermission(string $permission): bool
     {
         return $this->roles()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
             ->where('user_roles.is_active', true)
-=======
-            ->where('is_active', true)
->>>>>>> Stashed changes
-=======
-            ->where('is_active', true)
->>>>>>> Stashed changes
             ->get()
             ->flatMap(fn($role) => $role->permissions ?? [])
             ->contains($permission);
@@ -235,12 +203,4 @@ class User extends Authenticatable implements FilamentUser
             $this->roles()->detach($role->id);
         }
     }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-=======
-
->>>>>>> Stashed changes
 }

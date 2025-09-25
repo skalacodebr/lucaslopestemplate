@@ -1,103 +1,150 @@
 <div>
+  {{-- Include custom CSS and JS --}}
+  @push('styles')
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+  @endpush
+
+  @push('scripts')
+    <script src="{{ asset('js/home.js') }}"></script>
+  @endpush
+
   {{-- Hero Section --}}
-  <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+  <section class="hero-section py-20 text-white">
     <x-container>
-      <div class="py-20 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">
-          Sua empresa mais <span class="text-orange-400">produtiva</span> e <span class="text-green-400">segura</span>
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="hero-title mb-6">
+          Soluções personalizadas em<br>
+          <span class="highlight-yellow">saúde e segurança do trabalho</span><br>
+          para seu negócio.
         </h1>
-        <p class="text-xl md:text-2xl mb-8 text-blue-100">
-          Especialistas em Saúde e Segurança do Trabalho<br>
-          <strong>Aumente sua produtividade em 2% acima do mercado</strong>
+        <p class="hero-subtitle max-w-2xl mx-auto">
+          Somos uma empresa de consultoria especializada em engenharia de segurança e medicina do trabalho.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <x-button
-            size="lg"
-            class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4"
-            href="#contato"
-          >
+          <button class="btn-primary" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">
             Solicitar Orçamento
-          </x-button>
-          <x-button
-            size="lg"
-            variant="outline"
-            class="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4"
-            href="#servicos"
-          >
+          </button>
+          <button class="btn-outline" onclick="document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' })">
             Nossos Serviços
-          </x-button>
-          <x-button
-            size="lg"
-            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4"
-            href="{{ route('client.login') }}"
-            wire:navigate
-          >
-            🔐 Área do Cliente
-          </x-button>
+          </button>
         </div>
       </div>
     </x-container>
   </section>
 
-  {{-- Serviços Principais (Botões de Acesso Rápido) --}}
-  <section class="py-16 bg-gray-50" id="servicos">
+  {{-- About Company Section --}}
+  <section class="py-16 bg-white">
+    <x-container>
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-2xl font-bold text-blue-900 mb-4">CONHEÇA A INNOVATIVA</h2>
+            <h3 class="text-xl font-semibold mb-6">
+              Somos uma empresa de consultoria especializada em
+              <span class="text-yellow-500">engenharia de segurança e medicina do trabalho</span>
+            </h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Presente no setor há mais de 10 anos, temos o foco voltado para a prevenção de acidentes e
+              doenças ocupacionais, oferecendo soluções técnicas adequadas para cada segmento, mantendo
+              a segurança jurídica dos empresários e a integridade física dos colaboradores.
+            </p>
+            <button class="btn-primary">
+              Solicitar orçamento →
+            </button>
+          </div>
+          <div class="relative">
+            <div class="bg-yellow-400 rounded-lg p-8 text-center">
+              <img src="/api/placeholder/400/300" alt="Equipe Innovativa" class="w-full h-64 object-cover rounded-lg mb-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-container>
+  </section>
+
+  {{-- Services Section --}}
+  <section class="services-section py-16" id="servicos">
     <x-container>
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Nossos Serviços Principais
-        </h2>
-        <p class="text-lg text-gray-600">
-          Soluções completas em SST para manter sua empresa em conformidade
+        <h2 class="text-2xl font-bold text-blue-900 mb-4">Conheça</h2>
+        <h3 class="text-3xl font-bold text-blue-900 mb-6">nossos serviços</h3>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Oferecemos soluções completas e personalizadas em saúde e segurança do trabalho para seu negócio.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {{-- PCMSO --}}
-        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
-          <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      <div class="services-grid">
+        {{-- Medicina do Trabalho --}}
+        <div class="service-card">
+          <div class="service-icon">
+            <svg class="w-8 h-8 text-blue-900 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">PCMSO</h3>
-          <p class="text-gray-600 mb-4">Programa de Controle Médico de Saúde Ocupacional</p>
-          <a href="/servicos/pcmso" class="text-blue-600 font-medium hover:underline">Saiba mais →</a>
+          <h3>Medicina do Trabalho</h3>
+          <p>Realizamos exames ocupacionais e cuidamos da saúde dos seus colaboradores com foco na prevenção.</p>
+          <a href="/servicos/medicina" class="read-more">Saiba mais</a>
         </div>
 
-        {{-- PGR --}}
-        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
-          <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {{-- Segurança do Trabalho --}}
+        <div class="service-card">
+          <div class="service-icon">
+            <svg class="w-8 h-8 text-blue-900 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">PGR</h3>
-          <p class="text-gray-600 mb-4">Programa de Gerenciamento de Riscos</p>
-          <a href="/servicos/pgr" class="text-green-600 font-medium hover:underline">Saiba mais →</a>
+          <h3>Segurança do Trabalho</h3>
+          <p>Implementamos medidas preventivas e corretivas para garantir um ambiente de trabalho seguro.</p>
+          <a href="/servicos/seguranca" class="read-more">Saiba mais</a>
         </div>
 
-        {{-- LTCAT --}}
-        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
-          <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        {{-- Treinamentos e palestras das NRS --}}
+        <div class="service-card">
+          <div class="service-icon">
+            <svg class="w-8 h-8 text-blue-900 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">LTCAT</h3>
-          <p class="text-gray-600 mb-4">Laudo Técnico das Condições Ambientais do Trabalho</p>
-          <a href="/servicos/ltcat" class="text-purple-600 font-medium hover:underline">Saiba mais →</a>
+          <h3>Treinamentos e palestras das NRS</h3>
+          <p>Capacitamos sua equipe com treinamentos específicos conforme as normas regulamentadoras.</p>
+          <a href="/servicos/treinamentos" class="read-more">Saiba mais</a>
         </div>
 
-        {{-- eSocial --}}
-        <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
-          <div class="bg-orange-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9" />
+        {{-- Perícias médicas e de engenharia --}}
+        <div class="service-card">
+          <div class="service-icon">
+            <svg class="w-8 h-8 text-blue-900 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">eSocial</h3>
-          <p class="text-gray-600 mb-4">Integração e compliance com eSocial</p>
-          <a href="/servicos/esocial" class="text-orange-600 font-medium hover:underline">Saiba mais →</a>
+          <h3>Perícias médicas e de engenharia</h3>
+          <p>Realizamos avaliações técnicas especializadas para laudos periciais e análises forenses.</p>
+          <a href="/servicos/pericias" class="read-more">Saiba mais</a>
+        </div>
+
+        {{-- Gestão de terceiros --}}
+        <div class="service-card">
+          <div class="service-icon">
+            <svg class="w-8 h-8 text-blue-900 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3>Gestão de terceiros</h3>
+          <p>Controlamos e monitoramos a documentação de segurança de empresas terceirizadas.</p>
+          <a href="/servicos/gestao-terceiros" class="read-more">Saiba mais</a>
+        </div>
+
+        {{-- Gestão de território --}}
+        <div class="service-card">
+          <div class="service-icon">
+            <svg class="w-8 h-8 text-blue-900 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3>Gestão de território</h3>
+          <p>Oferecemos soluções regionalizadas para empresas com operações distribuídas geograficamente.</p>
+          <a href="/servicos/gestao-territorio" class="read-more">Saiba mais</a>
         </div>
       </div>
     </x-container>

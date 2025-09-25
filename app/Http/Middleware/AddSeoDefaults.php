@@ -42,9 +42,6 @@ class AddSeoDefaults
                 ->attr('type', 'image/png')
                 ->href('/favicon-16x16.png'),
 
-            LinkMeta::make()
-                ->rel('manifest')
-                ->href('/site.webmanifest'),
 
             LinkMeta::make()
                 ->rel('mask-icon')

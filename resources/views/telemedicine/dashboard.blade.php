@@ -3,6 +3,7 @@
 @section('title', 'Dashboard - Telemedicina')
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 @section('content')
 <div class="min-h-screen bg-gray-50" x-data="telemedicineBoard()">
     <!-- Dashboard Header -->
@@ -15,6 +16,8 @@
                     </h1>
                     <p class="text-gray-600">
 =======
+=======
+>>>>>>> Stashed changes
 @push('styles')
     @vite('resources/css/pages/telemedicine.css')
     @vite('resources/css/components/consultation-card.css')
@@ -36,14 +39,22 @@
                         Olá, {{ auth()->user()->full_name ?? auth()->user()->name }}
                     </h1>
                     <p class="dashboard-subtitle">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         Bem-vindo ao seu painel de telemedicina
                     </p>
                 </div>
                 <div class="flex items-center space-x-4">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     <button @click="loadConsultations()" class="bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-2 px-4 rounded-lg transition-colors">
                         <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+=======
+                    <button @click="loadConsultations()" class="btn-secondary">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+>>>>>>> Stashed changes
 =======
                     <button @click="loadConsultations()" class="btn-secondary">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,6 +73,7 @@
 
         <!-- Stats Grid -->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
@@ -69,12 +81,17 @@
                         <p class="text-2xl font-bold text-gray-900">{{ $stats['total_consultations'] ?? 0 }}</p>
                         <p class="text-sm text-gray-600 mt-1">Consultas Hoje</p>
 =======
+=======
+>>>>>>> Stashed changes
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="stat-value">{{ $stats['total_consultations'] ?? 0 }}</p>
                         <p class="stat-label">Consultas Hoje</p>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     </div>
                     <div class="text-blue-600">
@@ -84,7 +101,11 @@
                     </div>
                 </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
 =======
                 <div class="stat-change positive">
 >>>>>>> Stashed changes
@@ -93,17 +114,23 @@
             </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">{{ $stats['active_patients'] ?? 0 }}</p>
                         <p class="text-sm text-gray-600 mt-1">Pacientes Ativos</p>
 =======
+=======
+>>>>>>> Stashed changes
             <div class="stat-card">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="stat-value">{{ $stats['active_patients'] ?? 0 }}</p>
                         <p class="stat-label">Pacientes Ativos</p>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     </div>
                     <div class="text-green-600">
@@ -113,7 +140,11 @@
                     </div>
                 </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
 =======
                 <div class="stat-change positive">
 >>>>>>> Stashed changes
@@ -122,17 +153,23 @@
             </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">R$ {{ number_format($stats['total_revenue'] ?? 0, 2, ',', '.') }}</p>
                         <p class="text-sm text-gray-600 mt-1">Receita do Mês</p>
 =======
+=======
+>>>>>>> Stashed changes
             <div class="stat-card">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="stat-value">R$ {{ number_format($stats['total_revenue'] ?? 0, 2, ',', '.') }}</p>
                         <p class="stat-label">Receita do Mês</p>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     </div>
                     <div class="text-purple-600">
@@ -142,7 +179,11 @@
                     </div>
                 </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
 =======
                 <div class="stat-change positive">
 >>>>>>> Stashed changes
@@ -151,17 +192,23 @@
             </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow p-6 border border-gray-200">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['satisfaction_rate'] ?? 0, 1) }}%</p>
                         <p class="text-sm text-gray-600 mt-1">Satisfação</p>
 =======
+=======
+>>>>>>> Stashed changes
             <div class="stat-card">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="stat-value">{{ number_format($stats['satisfaction_rate'] ?? 0, 1) }}%</p>
                         <p class="stat-label">Satisfação</p>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     </div>
                     <div class="text-yellow-600">
@@ -171,7 +218,11 @@
                     </div>
                 </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <div class="text-sm font-medium mt-2 text-green-600">
+=======
+                <div class="stat-change positive">
+>>>>>>> Stashed changes
 =======
                 <div class="stat-change positive">
 >>>>>>> Stashed changes
@@ -203,6 +254,7 @@
 
         <!-- Tab Content -->
         <div x-show="activeTab === 'consultations'">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             <div class="bg-white rounded-lg shadow mb-8">
                 <div class="px-6 py-4 border-b border-gray-200">
@@ -336,6 +388,8 @@
                         </div>
                     @endif
 =======
+=======
+>>>>>>> Stashed changes
             <div class="consultation-section">
                 <div class="section-header">
                     <h3 class="section-title">Próximas Consultas</h3>
@@ -380,11 +434,15 @@
                             </div>
                         </div>
                     </template>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 </div>
             </div>
         </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <div x-show="activeTab === 'records'">
             <div class="bg-white rounded-lg shadow mb-8">
@@ -409,12 +467,17 @@
         <!-- Video Call Modal -->
         <div x-show="videoCallActive"
 >>>>>>> Stashed changes
+=======
+        <!-- Video Call Modal -->
+        <div x-show="videoCallActive"
+>>>>>>> Stashed changes
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
              class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
             <div class="relative top-1/2 mx-auto p-5 w-96 transform -translate-y-1/2">
@@ -465,6 +528,8 @@ window.authUserId = {{ auth()->id() }};
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 =======
+=======
+>>>>>>> Stashed changes
              class="fixed inset-0 z-50 overflow-y-auto">
             <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -530,5 +595,8 @@ window.authUserId = {{ auth()->id() }};
 <script>
     window.authUserId = {{ auth()->id() }};
 </script>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 @endsection

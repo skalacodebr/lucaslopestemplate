@@ -68,7 +68,10 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .consultation-status-badge.no-show {
     @apply bg-orange-100 text-orange-800;
 }
@@ -85,13 +88,19 @@
     @apply text-sm text-gray-700 mt-2 line-clamp-2;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .consultation-actions {
     @apply flex items-center justify-between;
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .consultation-actions-left {
     @apply flex items-center space-x-2;
 }
@@ -100,6 +109,9 @@
     @apply flex items-center space-x-2;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .consultation-action-btn {
     @apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-200;
@@ -114,7 +126,10 @@
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .consultation-action-btn.success {
     @apply bg-green-600 text-white hover:bg-green-700;
 }
@@ -135,13 +150,19 @@
     @apply text-xs text-gray-500;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 .consultation-fee {
     @apply text-sm font-semibold text-green-600;
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .consultation-reminder {
     @apply flex items-center space-x-1 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded;
 }
@@ -170,6 +191,9 @@
     @apply bg-gray-300 rounded-full;
 }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 /* Responsive adjustments */
 @media (max-width: 640px) {
@@ -184,12 +208,18 @@
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     .consultation-actions-left,
     .consultation-actions-right {
         @apply w-full justify-center;
     }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     .consultation-patient-info {
         @apply flex-col items-start space-x-0 space-y-2;

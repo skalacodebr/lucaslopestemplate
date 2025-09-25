@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             ProfessionalSeeder::class,
 =======
+=======
+>>>>>>> Stashed changes
         ]);
 
         $user = User::factory()->create([

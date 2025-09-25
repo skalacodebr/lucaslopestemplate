@@ -7,8 +7,11 @@ import Alpine from 'alpinejs';
 
 document.addEventListener('DOMContentLoaded', function() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     console.log('Telemedicine Dashboard loaded');
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     // Initialize Alpine.js components
@@ -24,9 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
         videoCallActive: false,
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         init() {
             this.loadConsultations();
 =======
+=======
+>>>>>>> Stashed changes
         // Video call state
         localStream: null,
         remoteStream: null,
@@ -42,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
         init() {
             this.loadConsultations();
             this.initializeNotifications();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             this.setupEventListeners();
         },
@@ -56,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         async loadConsultations() {
             this.loading = true;
             try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 // Simular API call
                 await new Promise(resolve => setTimeout(resolve, 1000));
@@ -77,6 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const response = await fetch('/api/consultations');
                 this.consultations = await response.json();
 >>>>>>> Stashed changes
+=======
+                const response = await fetch('/api/consultations');
+                this.consultations = await response.json();
+>>>>>>> Stashed changes
                 this.filterUpcomingConsultations();
             } catch (error) {
                 this.showNotification('Erro ao carregar consultas', 'error');
@@ -93,8 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // Notification system
 =======
+=======
+>>>>>>> Stashed changes
         async startConsultation(consultationId) {
             try {
                 this.loading = true;
@@ -242,6 +259,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         showNotification(message, type = 'info') {
             const notification = {
@@ -256,7 +276,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create toast element
             const toast = document.createElement('div');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             toast.className = `fixed top-4 right-4 bg-white border rounded-lg shadow-lg p-4 z-50 notification-${type}`;
+=======
+            toast.className = `notification-toast notification-${type}`;
+>>>>>>> Stashed changes
 =======
             toast.className = `notification-toast notification-${type}`;
 >>>>>>> Stashed changes
@@ -284,9 +308,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // Event listeners
         setupEventListeners() {
 =======
+=======
+>>>>>>> Stashed changes
         // Professional search and booking
         async searchProfessionals(specialty = null, query = null) {
             try {
@@ -393,6 +420,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             // Handle online/offline status
             window.addEventListener('online', () => {
@@ -412,7 +442,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                 case 'professionals':
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     this.loadProfessionals();
+=======
+                    this.searchProfessionals();
+>>>>>>> Stashed changes
 =======
                     this.searchProfessionals();
 >>>>>>> Stashed changes
@@ -423,6 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         async loadProfessionals() {
             this.loading = true;
@@ -448,6 +483,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         formatDate(date) {
@@ -476,7 +513,12 @@ document.addEventListener('DOMContentLoaded', function() {
 window.TelemedicineApp = {
     showNotification: function(message, type) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         console.log(`[${type.toUpperCase()}] ${message}`);
+=======
+        // Global notification function
+        Alpine.store('notifications').add(message, type);
+>>>>>>> Stashed changes
 =======
         // Global notification function
         Alpine.store('notifications').add(message, type);

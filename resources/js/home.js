@@ -15,7 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Stats counter animation
     initStatsCounter();
+
+    // Initialize carousel
+    initCarousel();
+
+    // Initialize sticky header
+    initStickyHeader();
 });
+
+// Carousel functionality
+let currentSlide = 0;
+const totalSlides = 3; // We'll show 3 slides (2 cards per slide)
 
 function initFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
@@ -256,9 +266,76 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+function initCarousel() {
+    const track = document.querySelector('.services-track');
+    if (!track) return;
+
+    // Auto-slide every 5 seconds
+    setInterval(() => {
+        moveCarousel('next');
+    }, 5000);
+}
+
+function moveCarousel(direction) {
+    const track = document.querySelector('.services-track');
+    const dots = document.querySelectorAll('.dot');
+
+    if (!track) return;
+
+    if (direction === 'next') {
+        currentSlide = (currentSlide + 1) % totalSlides;
+    } else {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    }
+
+    updateCarousel();
+}
+
+function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateCarousel();
+}
+
+function updateCarousel() {
+    const track = document.querySelector('.services-track');
+    const dots = document.querySelectorAll('.dot');
+
+    if (!track) return;
+
+    // Calculate the translate value
+    const translateX = -(currentSlide * 100 / totalSlides);
+    track.style.transform = `translateX(${translateX}%)`;
+
+    // Update dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function initStickyHeader() {
+    const header = document.getElementById('main-header');
+    if (!header) return;
+
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        lastScrollY = currentScrollY;
+    });
+}
+
 // Export functions for global access
 window.homePageUtils = {
     openWhatsApp,
     handleContactForm,
-    showNotification
+    showNotification,
+    moveCarousel,
+    goToSlide
 };

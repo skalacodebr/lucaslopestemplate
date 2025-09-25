@@ -1,4 +1,4 @@
-<header class="text-white bg-blue-900 shadow-lg">
+<header class="text-white bg-blue-900 shadow-lg sticky-header" id="main-header">
   <x-container>
     <nav class="flex items-center justify-between py-4">
       <a

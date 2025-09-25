@@ -3,22 +3,12 @@
  * Handles interactions and functionality for the telemedicine platform
  */
 
-import Alpine from 'alpinejs';
-
 document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     console.log('Telemedicine Dashboard loaded');
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    // Initialize Alpine.js components
-    Alpine.data('telemedicineBoard', () => ({
+    // Initialize Alpine.js components when Alpine is available
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('telemedicineBoard', () => ({
         // Dashboard state
         activeTab: 'consultations',
         consultations: [],
@@ -29,16 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loading: false,
         videoCallActive: false,
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        init() {
-            this.loadConsultations();
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         // Video call state
         localStream: null,
         remoteStream: null,
@@ -54,13 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         init() {
             this.loadConsultations();
             this.initializeNotifications();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             this.setupEventListeners();
         },
 
@@ -74,10 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         async loadConsultations() {
             this.loading = true;
             try {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                // Simular API call
+                // Simular API call para demonstração
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
                 // Mock data para demonstração
@@ -93,18 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 ];
 
-=======
-                const response = await fetch('/api/consultations');
-                this.consultations = await response.json();
->>>>>>> Stashed changes
-=======
-                const response = await fetch('/api/consultations');
-                this.consultations = await response.json();
->>>>>>> Stashed changes
-=======
-                const response = await fetch('/api/consultations');
-                this.consultations = await response.json();
->>>>>>> Stashed changes
                 this.filterUpcomingConsultations();
             } catch (error) {
                 this.showNotification('Erro ao carregar consultas', 'error');
@@ -120,15 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
             );
         },
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        // Notification system
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         async startConsultation(consultationId) {
             try {
                 this.loading = true;
@@ -160,6 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Video call functionality with Agora.io
         async initializeVideoCall(channelName, token, uid) {
             try {
+                // Check if AgoraRTC is available
+                if (typeof AgoraRTC === 'undefined') {
+                    throw new Error('Agora SDK não está carregado');
+                }
+
                 // Initialize Agora engine
                 this.agoraEngine = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
 
@@ -276,13 +230,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         showNotification(message, type = 'info') {
             const notification = {
                 id: Date.now(),
@@ -295,19 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create toast element
             const toast = document.createElement('div');
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
             toast.className = `fixed top-4 right-4 bg-white border rounded-lg shadow-lg p-4 z-50 notification-${type}`;
-=======
-            toast.className = `notification-toast notification-${type}`;
->>>>>>> Stashed changes
-=======
-            toast.className = `notification-toast notification-${type}`;
->>>>>>> Stashed changes
-=======
-            toast.className = `notification-toast notification-${type}`;
->>>>>>> Stashed changes
             toast.innerHTML = `
                 <div class="flex items-center">
                     <div class="flex-1">
@@ -331,16 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 5000);
         },
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        // Event listeners
-        setupEventListeners() {
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         // Professional search and booking
         async searchProfessionals(specialty = null, query = null) {
             try {
@@ -385,59 +310,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
-        // Medical records
-        async loadMedicalRecords() {
-            try {
-                const response = await fetch('/api/medical-records');
-                return await response.json();
-            } catch (error) {
-                this.showNotification('Erro ao carregar prontuários', 'error');
-                return [];
-            }
-        },
-
-        // Chat functionality
-        initializeChat() {
-            // Initialize chat functionality for consultations
-            if (typeof Echo !== 'undefined' && this.channelName) {
-                Echo.private(`consultation.${this.channelName}`)
-                    .listen('MessageSent', (e) => {
-                        this.displayChatMessage(e.message);
-                    });
-            }
-        },
-
-        sendChatMessage(message) {
-            // Send chat message during consultation
-            fetch('/api/consultation/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify({
-                    channel: this.channelName,
-                    message: message
-                })
-            });
-        },
-
-        displayChatMessage(message) {
-            // Display chat message in the interface
-            const chatContainer = document.getElementById('chat-messages');
-            if (chatContainer) {
-                const messageElement = document.createElement('div');
-                messageElement.className = 'chat-message';
-                messageElement.innerHTML = `
-                    <div class="font-medium">${message.sender_name}</div>
-                    <div class="text-sm text-gray-600">${message.content}</div>
-                    <div class="text-xs text-gray-400">${new Date(message.created_at).toLocaleTimeString()}</div>
-                `;
-                chatContainer.appendChild(messageElement);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        },
-
         // Event listeners
         setupEventListeners() {
             // Handle beforeunload to clean up video calls
@@ -447,13 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             // Handle online/offline status
             window.addEventListener('online', () => {
                 this.showNotification('Conexão reestabelecida', 'success');
@@ -471,38 +336,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.loadConsultations();
                     break;
                 case 'professionals':
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                    this.loadProfessionals();
-=======
                     this.searchProfessionals();
->>>>>>> Stashed changes
-=======
-                    this.searchProfessionals();
->>>>>>> Stashed changes
-=======
-                    this.searchProfessionals();
->>>>>>> Stashed changes
                     break;
                 case 'records':
                     this.loadMedicalRecords();
                     break;
-            }
-        },
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        async loadProfessionals() {
-            this.loading = true;
-            try {
-                await new Promise(resolve => setTimeout(resolve, 500));
-                // Mock professionals data
-            } catch (error) {
-                this.showNotification('Erro ao carregar profissionais', 'error');
-            } finally {
-                this.loading = false;
             }
         },
 
@@ -518,12 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         formatDate(date) {
             return new Date(date).toLocaleDateString('pt-BR', {
                 year: 'numeric',
@@ -540,30 +372,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 currency: 'BRL'
             }).format(amount);
         }
-    }));
-
-    // Initialize Alpine.js
-    Alpine.start();
+        }));
+    });
 });
 
 // Export functions for global access
 window.TelemedicineApp = {
     showNotification: function(message, type) {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         console.log(`[${type.toUpperCase()}] ${message}`);
-=======
-        // Global notification function
-        Alpine.store('notifications').add(message, type);
->>>>>>> Stashed changes
-=======
-        // Global notification function
-        Alpine.store('notifications').add(message, type);
->>>>>>> Stashed changes
-=======
-        // Global notification function
-        Alpine.store('notifications').add(message, type);
->>>>>>> Stashed changes
     }
 };

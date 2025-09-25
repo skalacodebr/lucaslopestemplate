@@ -1,18 +1,18 @@
-/* Home Page Styles - Innovativa Identity */
+/* Home Page Styles - Global SST Identity */
 
 /* Custom Colors */
 :root {
-  --innovativa-blue: #1e3a8a;
-  --innovativa-blue-dark: #1e40af;
-  --innovativa-yellow: #fbbf24;
-  --innovativa-yellow-light: #fef3c7;
-  --innovativa-gray: #6b7280;
-  --innovativa-gray-light: #f9fafb;
+  --globalsst-blue: #1e3a8a;
+  --globalsst-blue-dark: #1e40af;
+  --globalsst-yellow: #fbbf24;
+  --globalsst-yellow-light: #fef3c7;
+  --globalsst-gray: #6b7280;
+  --globalsst-gray-light: #f9fafb;
 }
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, var(--innovativa-blue) 0%, var(--innovativa-blue-dark) 100%);
+  background: linear-gradient(135deg, var(--globalsst-blue) 0%, var(--globalsst-blue-dark) 100%);
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
   position: relative;
   overflow: hidden;
@@ -42,7 +42,7 @@
 }
 
 .hero-title .highlight-yellow {
-  color: var(--innovativa-yellow);
+  color: var(--globalsst-yellow);
   position: relative;
 }
 
@@ -53,7 +53,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--innovativa-yellow);
+  background: var(--globalsst-yellow);
   border-radius: 2px;
 }
 
@@ -65,8 +65,8 @@
 
 /* Buttons */
 .btn-primary {
-  background: var(--innovativa-yellow);
-  color: var(--innovativa-blue);
+  background: var(--globalsst-yellow);
+  color: var(--globalsst-blue);
   font-weight: 600;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -81,8 +81,8 @@
 }
 
 .btn-outline {
-  border: 2px solid var(--innovativa-yellow);
-  color: var(--innovativa-yellow);
+  border: 2px solid var(--globalsst-yellow);
+  color: var(--globalsst-yellow);
   background: transparent;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -91,14 +91,14 @@
 }
 
 .btn-outline:hover {
-  background: var(--innovativa-yellow);
-  color: var(--innovativa-blue);
+  background: var(--globalsst-yellow);
+  color: var(--globalsst-blue);
   transform: translateY(-2px);
 }
 
 /* Services Section */
 .services-section {
-  background: var(--innovativa-gray-light);
+  background: var(--globalsst-gray-light);
   position: relative;
 }
 
@@ -126,7 +126,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--innovativa-yellow);
+  background: var(--globalsst-yellow);
 }
 
 .service-card:hover {
@@ -137,7 +137,7 @@
 .service-icon {
   width: 80px;
   height: 80px;
-  background: var(--innovativa-yellow-light);
+  background: var(--globalsst-yellow-light);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -151,7 +151,7 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  background: var(--innovativa-yellow);
+  background: var(--globalsst-yellow);
   border-radius: 12px;
   opacity: 0.2;
 }
@@ -159,18 +159,18 @@
 .service-card h3 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--innovativa-blue);
+  color: var(--globalsst-blue);
   margin-bottom: 1rem;
 }
 
 .service-card p {
-  color: var(--innovativa-gray);
+  color: var(--globalsst-gray);
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
 .service-card .read-more {
-  color: var(--innovativa-blue);
+  color: var(--globalsst-blue);
   font-weight: 600;
   text-decoration: none;
   position: relative;
@@ -178,7 +178,7 @@
 }
 
 .service-card .read-more:hover {
-  color: var(--innovativa-yellow);
+  color: var(--globalsst-yellow);
 }
 
 .service-card .read-more::after {
@@ -208,25 +208,25 @@
   text-align: center;
   padding: 1.5rem;
   border-radius: 12px;
-  background: var(--innovativa-gray-light);
+  background: var(--globalsst-gray-light);
 }
 
 .stat-number {
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--innovativa-blue);
+  color: var(--globalsst-blue);
   display: block;
 }
 
 .stat-label {
-  color: var(--innovativa-gray);
+  color: var(--globalsst-gray);
   font-weight: 600;
   margin-top: 0.5rem;
 }
 
 /* Blue Section */
 .blue-section {
-  background: var(--innovativa-blue);
+  background: var(--globalsst-blue);
   color: white;
   position: relative;
   overflow: hidden;
@@ -252,12 +252,12 @@
 }
 
 .blue-section .highlight {
-  color: var(--innovativa-yellow);
+  color: var(--globalsst-yellow);
 }
 
 /* Blog Section */
 .blog-section {
-  background: var(--innovativa-gray-light);
+  background: var(--globalsst-gray-light);
 }
 
 .blog-grid {
@@ -281,7 +281,7 @@
 
 .blog-image {
   height: 200px;
-  background: var(--innovativa-yellow-light);
+  background: var(--globalsst-yellow-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,7 +294,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--innovativa-yellow), #f59e0b);
+  background: linear-gradient(135deg, var(--globalsst-yellow), #f59e0b);
   opacity: 0.8;
 }
 
@@ -305,29 +305,29 @@
 .blog-card h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--innovativa-blue);
+  color: var(--globalsst-blue);
   margin-bottom: 0.5rem;
 }
 
 .blog-card .date {
-  color: var(--innovativa-gray);
+  color: var(--globalsst-gray);
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
 
 .blog-card .read-more {
-  color: var(--innovativa-blue);
+  color: var(--globalsst-blue);
   font-weight: 600;
   text-decoration: none;
 }
 
 .blog-card .read-more:hover {
-  color: var(--innovativa-yellow);
+  color: var(--globalsst-yellow);
 }
 
 /* FAQ Section */
 .faq-section {
-  background: var(--innovativa-blue);
+  background: var(--globalsst-blue);
   color: white;
 }
 
@@ -346,7 +346,7 @@
 }
 
 .faq-question:hover {
-  color: var(--innovativa-yellow);
+  color: var(--globalsst-yellow);
 }
 
 .faq-answer {
@@ -356,7 +356,7 @@
 
 /* CTA Section */
 .cta-section {
-  background: linear-gradient(135deg, var(--innovativa-blue) 0%, var(--innovativa-blue-dark) 100%);
+  background: linear-gradient(135deg, var(--globalsst-blue) 0%, var(--globalsst-blue-dark) 100%);
   color: white;
   text-align: center;
   position: relative;

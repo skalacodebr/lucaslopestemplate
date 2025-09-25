@@ -38,7 +38,7 @@
       <div class="max-w-4xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-2xl font-bold text-blue-900 mb-4">CONHEÇA A INNOVATIVA</h2>
+            <h2 class="text-2xl font-bold text-blue-900 mb-4">CONHEÇA A GLOBAL SST</h2>
             <h3 class="text-xl font-semibold mb-6">
               Somos uma empresa de consultoria especializada em
               <span class="text-yellow-500">engenharia de segurança e medicina do trabalho</span>
@@ -155,7 +155,7 @@
     <x-container>
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="mb-6">
-          <span class="highlight">Innovativa</span><br>
+          <span class="highlight">Global SST</span><br>
           é segurança<br>
           & saúde<br>
           & proteção<br>
@@ -251,7 +251,7 @@
   <section class="blog-section py-16">
     <x-container>
       <div class="text-center mb-12">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4">Blog Innovativa</h2>
+        <h2 class="text-2xl font-bold text-blue-900 mb-4">Blog Global SST</h2>
         <p class="text-gray-600">Conheça nossas novidades</p>
       </div>
 

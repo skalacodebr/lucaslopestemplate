@@ -11,12 +11,12 @@ class Home extends Component
     public function render()
     {
         seo()
-            ->title($title = 'Innovativa - Consultoria em Saúde e Segurança do Trabalho')
+            ->title($title = 'Global SST - Consultoria em Saúde e Segurança do Trabalho')
             ->description($description = 'Soluções personalizadas em saúde e segurança do trabalho para seu negócio. Especialistas em engenharia de segurança e medicina do trabalho há mais de 10 anos.')
             ->canonical($url = route('home'))
             ->addSchema(
                 Schema::organization()
-                    ->name('Innovativa')
+                    ->name('Global SST')
                     ->description($description)
                     ->url($url)
                     ->contactPoint(

@@ -1,4 +1,4 @@
-// Home Page JavaScript - Innovativa Identity
+// Home Page JavaScript - Global SST Identity
 
 document.addEventListener('DOMContentLoaded', function() {
     // FAQ Accordion
